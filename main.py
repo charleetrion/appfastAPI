@@ -2,13 +2,13 @@ from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, Session
 
 # Crear instancia de FastAPI
 app = FastAPI()
 
 # Configurar base de datos
-DATABASE_URL = "mysql+pymysql://admin:CDAR159930j@basedatosfastapi.c1660ow0ylh2.us-east-1.rds.amazonaws.com:3306/fastapi_db"
+DATABASE_URL = "mysql+pymysql://admin:CDAR159930j@database-fastapi.c1660ow0ylh2.us-east-1.rds.amazonaws.com:3306/dbname"
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
