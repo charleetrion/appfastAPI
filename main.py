@@ -8,7 +8,7 @@ from sqlalchemy.orm import sessionmaker, Session
 app = FastAPI()
 
 # Configurar base de datos
-DATABASE_URL = "mysql+pymysql://admin:CDAR159930j@database-fastapi.c1660ow0ylh2.us-east-1.rds.amazonaws.com:3306/dbname"
+DATABASE_URL = "mysql://usuario:contraseña@host:3306/nombre_base_de_datos"
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
@@ -67,3 +67,8 @@ def delete_user(user_id: int, db: Session = Depends(get_db)):
     db.delete(user)
     db.commit()
     return user
+
+# Endpoint de verificación de salud
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
